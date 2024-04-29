@@ -1,8 +1,12 @@
 # OpenWeatherAemet
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/open_weather_aemet`. To experiment with that code, run `bin/console` for an interactive prompt.
+**OpenWeatherAemet** is a Ruby gem implemented to access to the [Aemet Open Data](https://opendata.aemet.es/centrodedescargas/inicio).
 
-TODO: Delete this and the text above, and describe your gem
+The AEMET (es: *Agencia Estatal de Meteorología*) provides some open resources in API format to get meterologic information, like the weather forecasting for Spain teritories.
+
+![AEMET](https://i.ibb.co/t3mhrhH/quienes-somos.gif[/img])
+
+This API is accesible via AEMET [API key](https://opendata.aemet.es/centrodedescargas/altaUsuario?), and you could get which endpoints to use in this [swagger](https://opendata.aemet.es/dist/index.html?) documentation. So, you need to create an API key in the AEMET web page before starting to use this gem in your project.
 
 ## Installation
 
@@ -22,17 +26,45 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Previous requirements:
 
-## Development
+- Get an [API key](https://opendata.aemet.es/centrodedescargas/altaUsuario?) from AEMET (we would recommend to store in an ENV variable for your project).
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+If you have installed (see prev section) the gem in your ruby project:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+1. Require the library:
+    
+    ```ruby
+    require 'open_weather_aemet'
+    ```
+    
+2. Use some of the following methods
+    
+    ```ruby
+    # Get forecast results from any endpoint.
+    # api_url is the endpoint URL
+    # api_key is the AEMET api key
+    OpenWeatherAemet::Weather.forecast_by_api_url(api_url, api_key)
+    
+    # Get forecast results from a city.
+    # city_code is the official INE code from any spanish city
+    # api_key is the AEMET api key
+    OpenWeatherAemet::Weather.forecast_by_city(city_code, api_key)
+    ```
+
+    You can get INE codes from the [web INE](https://www.ine.es/daco/daco42/codmun/codmun11/11codmunmapa.htm). In the future, we will try to implement a method by city name instead of city code.
+
+    
+3. Use the JSON returned as you want. Example of output for *forecast by city*:
+```
+[{:date=>"2024-04-29T00:00:00", :max_temperature=>18, :min_temperature=>6, :sky_state=>"very_cloudy"},
+ {:date=>"2024-04-30T00:00:00", :max_temperature=>21, :min_temperature=>4, :sky_state=>"partly_cloudy_intervals"},
+ {:date=>"2024-05-01T00:00:00", :max_temperature=>16, :min_temperature=>4, :sky_state=>"partly_cloudy_intervals_with_rain"}]
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/open_weather_aemet. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/open_weather_aemet/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome to be opened in this repo https://github.com/roman-developer/open_weather_aemet. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/open_weather_aemet/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -40,4 +72,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the OpenWeatherAemet project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/open_weather_aemet/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the **OpenWeatherAemet** project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/open_weather_aemet/blob/main/CODE_OF_CONDUCT.md).
