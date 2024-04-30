@@ -6,10 +6,10 @@ require "utilities/sky_state"
 
 module OpenWeatherAemet
   class Error < StandardError; end
-  
+
   class Weather
     def self.forecast_by_api_url(api_url, api_key)
-      return 'Invalid inputs' unless api_url || api_key
+      return "Invalid inputs" unless api_url || api_key
 
       ApiAemet::DataResponse.new(api_url: api_url, api_key: api_key).call
     end
@@ -18,11 +18,11 @@ module OpenWeatherAemet
       api_url = "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/#{city_code}"
       response = ApiAemet::DataResponse.new(api_url: api_url, api_key: api_key).call
 
-      return 'No data' unless response
+      return "Invalid data" unless response.is_a?(Hash)
 
       three_forecast_days = response.first["prediccion"]["dia"][0..2]
       forecast_result = []
-      three_forecast_days.each do|forecast_day|
+      three_forecast_days.each do |forecast_day|
         forecast_result << {
           date: forecast_day["fecha"],
           max_temperature: forecast_day["temperatura"]["maxima"],
