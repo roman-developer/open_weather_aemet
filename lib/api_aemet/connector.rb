@@ -1,6 +1,7 @@
 # frozen_string_literal: true
-require 'uri'
-require 'net/http'
+
+require "uri"
+require "net/http"
 
 module ApiAemet
   class Connector
@@ -14,18 +15,18 @@ module ApiAemet
 
     def call
       url = URI("#{api_url}/?api_key=#{api_key}")
-  
+
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-  
+
       request = Net::HTTP::Get.new(url)
-      request["cache-control"] = 'no-cache'
-  
+      request["cache-control"] = "no-cache"
+
       http.request(request)
     end
 
-    private 
+    private
 
     attr_reader :api_url, :api_key
   end

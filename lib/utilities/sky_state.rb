@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Utilities
   class SkyState
     attr_reader :state
@@ -16,11 +18,12 @@ module Utilities
       return state_00_24["value"] unless state_00_24["value"]&.strip&.empty?
       return state_00_12["value"] unless state_00_12["value"]&.strip&.empty?
       return state_12_24["value"] unless state_12_24["value"]&.strip&.empty?
-      return DEFAULT_SKY_STATE
+
+      DEFAULT_SKY_STATE
     end
 
     def find
-      result = list_sky_states.find { |key, val| key == format_state.to_s }&.last
+      result = list_sky_states.find { |key, _val| key == format_state.to_s }&.last
       result.nil? ? "not_found" : result
     end
 
