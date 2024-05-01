@@ -8,6 +8,8 @@ The AEMET (es: *Agencia Estatal de Meteorología*) provides some open resources 
 
 This API is accesible via AEMET [API key](https://opendata.aemet.es/centrodedescargas/altaUsuario?), and you could get which endpoints to use in this [swagger](https://opendata.aemet.es/dist/index.html?) documentation. So, you need to create an API key in the AEMET web page before starting to use this gem in your project.
 
+:es: --> *Este README está disponible en Español [aquí](https://github.com/roman-developer/open_weather_aemet/blob/main/README_ES.md)*
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -26,11 +28,11 @@ Or install it yourself as:
 
 ## Usage
 
-Previous requirements:
+:exclamation: Previous requirements:
 
 - Get an [API key](https://opendata.aemet.es/centrodedescargas/altaUsuario?) from AEMET (we would recommend to store in an ENV variable for your project).
 
-If you have installed (see prev section) the gem in your ruby project:
+If you have installed the gem (see [previous section](##Installation)) in your ruby project:
 
 1. Require the library:
     
@@ -52,7 +54,7 @@ If you have installed (see prev section) the gem in your ruby project:
     OpenWeatherAemet::Weather.forecast_by_city(city_code, api_key)
     ```
 
-    You can get INE codes from the [web INE](https://www.ine.es/daco/daco42/codmun/codmun11/11codmunmapa.htm). In the future, we will try to implement a method by city name instead of city code.
+    :round_pushpin: You can get **INE codes** from the [INE website](https://www.ine.es/daco/daco42/codmun/codmun11/11codmunmapa.htm). In the future, we will try to implement a method by city name instead of city code.
 
     
 3. Use the JSON returned as you want. Example of output for *forecast by city*:
@@ -64,7 +66,18 @@ If you have installed (see prev section) the gem in your ruby project:
 
 ## Contributing
 
-Bug reports and pull requests are welcome to be opened in this repo https://github.com/roman-developer/open_weather_aemet. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/open_weather_aemet/blob/main/CODE_OF_CONDUCT.md).
+Any contribution to improve this gem is welcome in this repo https://github.com/roman-developer/open_weather_aemet. If you want to collaborate, adding a new implementation or fixing a bug, please open an issue and a PR associate to this issue to be reviewed by the repository owners.
+
+Follow these **rules** when you add your code:
+
+- Start commit name with `chore:` if you are doing a maintenance task.
+- Start commit name with `feat:` if you are implementing a new feature (if is not existing in the project).
+- Start commit name with `doc:` if you are adding documentation
+- Start commit name with `bug:` if you are fixing a bug.
+
+:warning: DON'T try to merge directly on `main` branch, please open a PR for contributing, if not your code could be reverted.
+
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/open_weather_aemet/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
