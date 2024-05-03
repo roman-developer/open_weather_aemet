@@ -18,7 +18,7 @@ module OpenWeatherAemet
       api_url = "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/#{city_code}"
       response = ApiAemet::DataResponse.new(api_url: api_url, api_key: api_key).call
 
-      return "Invalid data" unless response.is_a?(Hash)
+      return "Invalid data" unless response.is_a?(Array)
 
       three_forecast_days = response.first["prediccion"]["dia"][0..2]
       forecast_result = []
